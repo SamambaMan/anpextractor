@@ -1,1 +1,1 @@
-web: gunicorn morser.manager:app --log-file -
+web: gunicorn manager:app --log-file -

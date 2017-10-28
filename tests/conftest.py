@@ -5079,3 +5079,121 @@ function ShowTodayDate()
 </BODY>
 </HTML>
 """
+
+@pytest.fixture
+def station_detail():
+    return """
+
+
+<HTML>
+<head>
+	<title>:: ANP - Agência Nacional de Petróleo ::</title>
+	<!--
+	<link rel="STYLESHEET" type="text/css" href="/css/default.css">
+	-->
+	<style type="text/css">
+		@import "/SITE/extras/css/default.css";
+	</style>
+	<META http-equiv=Content-Type content="text/html; charset=iso-8859-1">
+	<meta http-equiv=pragma content=no-cache>
+	<meta http-equiv=expires content="Mon, 06 Jan 1990 00:00:01 GMT">
+</head>
+
+<script language="JAVASCRIPT">
+function ShowHours() 
+{
+    TodaysHour = new Date()
+	horas = TodaysHour.getHours()
+	minutos = TodaysHour.getMinutes()
+	segundos = TodaysHour.getSeconds()
+	if (horas < 10)
+		horas= "0" + horas
+
+	if (minutos < 10)
+		minutos = "0" + minutos
+
+	if (segundos < 10)
+		segundos = "0" + segundos
+	
+    document.write(horas+":"+minutos+":"+segundos)
+}
+
+function ShowTodayDate() 
+{
+	now = new Date()
+	dia = now.getDate()
+	mes = now.getMonth() + 1
+	ano = now.getYear()
+
+	if (dia < 10)
+		dia = "0" + dia
+	if (mes < 10)
+		mes = "0" + mes
+	if (ano < 2000)
+		ano = "19" + ano
+
+        if (navigator.appName == "Netscape") 
+        {
+             if (ano > 1999)  
+             ano = "200" + (now.getYear()-100)  
+ 	    }
+        if (navigator.appName == "Netscape") 
+        {
+             if (ano > 2009) 
+	     ano = "20" + (now.getYear()-100)  
+	     }
+	document.write(dia+"/" +mes+ "/" +ano)
+}
+</script>
+
+<body leftmargin=0 topmargin=0 marginheight="0" marginwidth="0" bgcolor="#ffffff">
+<!-- tabela moldura principal -->
+
+<table width="760" border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="126" bgcolor="#D7D7D7" valign="top">&nbsp;</td>
+<td valign="top" width="634">
+
+<!-- fim da tabela moldura principal e inicio do corpo do consulta de postos -->
+		<TABLE>
+        <!--span class="txtcinza2"><b>Data:</b> <script language="javascript">ShowTodayDate();</script>&nbsp;&nbsp; <b>Hora:</b> <script language="javascript">ShowHours();</script></span-->
+        <span class="txtcinza2"><b>Data:</b> 28/10/2017&nbsp;&nbsp; <b>Hora:</b> 14:31:29</span>
+
+</TABLE>
+
+    <!--include virtual="/postos/resultadoquery.asp"-->
+    
+	<TABLE height=530 cols=1 width=634  border=0>
+	  <TBODY>
+	  <TR>
+	    <TD height=121 valign="top" align="left">
+	        <DIV align=left>
+	        <table border="0" width=634 cellspacing="3">
+	        <tr><td colspan=2 align=right><font face="Arial" size="2"><b><a href="consulta.asp">Nova Consulta</a></b></font></td></tr>
+	
+	      <tr><td bgcolor=#e7e7e7 colspan=2><font face=verdana color=#666666 size=3><div align="left"><b>Posto com autorização revogada</FONT></b></br></tr></td>
+	      <tr><td colspan=2><font face=verdana color=#666666 size=1><br><div align="justify"> </FONT></br>
+	      <font face=verdana color=#666666 size=1 bgcolor=#d7d7d7 color=red>A situação cadastral atual não permite a emissão do Certificado.</font><br>
+	      <font face=Verdana color=#666666 size=1> </a></font>
+	      <font face=Verdana color=#666666 size=1>Caso deseje verificar a autenticidade de Certificado já emitido para este posto, <b><a href="CertificadoConfirmacao.asp?">clique aqui.</a></b></font><br>&nbsp;</td></tr>
+	      <tr> <td align=right bgcolor=#e7e7e7 valign=top><font face=Verdana color=#666666 size=1><b>CNPJ/CPF:</b></font></td>            <td valign=top align=left bgcolor=#e7e7e7><font face=Verdana color=#666666 size=1>03.081.666/0001-00</font></td></tr><tr><td align=right bgcolor=#d7d7d7 valign=top><font face=Verdana color=#666666 size=1><b>Razão Social:</b></font></td>            <td valign=top align=left bgcolor=#d7d7d7><font face=Verdana color=#666666 size=1>AUTO POSTO TIMBUIBOM LTDA</font></td></tr><tr><td align=right bgcolor=#e7e7e7 valign=top><font face=Verdana color=#666666 size=1><b>Nome Fantasia:</b></font></td>            <td valign=top align=left bgcolor=#e7e7e7><font face=Verdana color=#666666 size=1>POSTO BELEM</font></td></tr><tr><td align=right bgcolor=#d7d7d7 valign=top><font face=Verdana color=#666666 size=1><b>Endereço:</b></font></td>            <td valign=top align=left bgcolor=#d7d7d7><font face=Verdana color=#666666 size=1>  RODOVIA BR 101, KM 160  S/N&nbsp;</font></td></tr><tr><td align=right bgcolor=#e7e7e7 valign=top><font face=Verdana color=#666666 size=1><b>Complemento:</b></font></td>            <td valign=top align=left bgcolor=#e7e7e7><font face=Verdana color=#666666 size=1>&nbsp;</font></td></tr><tr><td align=right bgcolor=#d7d7d7 valign=top><font face=Verdana color=#666666 size=1><b>Bairro:</b></font></td>            <td valign=top align=left bgcolor=#d7d7d7><font face=Verdana color=#666666 size=1>BEBEDOURO&nbsp;</font></td></tr><tr><td align=right bgcolor=#e7e7e7 valign=top><font face=Verdana color=#666666 size=1><b>Município/UF:</b></font></td>            <td valign=top align=left bgcolor=#e7e7e7><font face=Verdana color=#666666 size=1>LINHARES/ES&nbsp;</font></td></tr><tr><td align=right bgcolor=#d7d7d7 valign=top><font face=Verdana color=#666666 size=1><b>CEP:</b></font></td>            <td valign=top align=left bgcolor=#d7d7d7><font face=Verdana color=#666666 size=1>29900000&nbsp;</font></td></tr><tr><td align=right bgcolor=#e7e7e7 valign=top><font face=Verdana color=#666666 size=1><b>Número Despacho:</b></font></td>            <td valign=top align=left bgcolor=#e7e7e7><font face=Verdana color=#666666 size=1>ANP Nº 982&nbsp;</font></td></tr><tr><td align=right bgcolor=#d7d7d7 valign=top><font face=Verdana color=#666666 size=1><b>Data Publicação:</b></font></td>            <td valign=top align=left bgcolor=#d7d7d7><font face=Verdana color=#666666 size=1>09/07/2015&nbsp;</font></td></tr><tr><td align=right bgcolor=#e7e7e7 valign=top><font face=Verdana color=#666666 size=1><b>Tipo do Posto:</b></font></td>            <td valign=top align=left bgcolor=#e7e7e7><font face=Verdana color=#666666 size=1>REVENDEDOR&nbsp;</font></td>		<!--</ul>&nbsp;</td></tr></table><DIV align=left><table border=0 cellspacing=3 width=100>-->
+       
+       </ul>&nbsp;</td></tr></table><DIV align=left><table border=0 cellspacing=3 width=280>
+                   <tr><td valign=top align=left bgcolor=#FFFFFF><font face=Verdana color=#666666 size=1>&nbsp;</font></td></tr>
+       </table>
+       </DIV></BLOCKQUOTE></TD></TR>
+       </TBODY></TABLE>
+    
+
+<!-- fim  do corpo do consulta de postos -->
+<!-- termino da tabela moldura principal -->
+</td>
+</tr>
+<tr>
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<!-- fim tabela moldura principal -->
+
+</BODY></HTML>
+"""

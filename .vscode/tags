@@ -1,0 +1,36 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+THREADED	../manager.py	/^THREADED = False$/;"	kind:variable	line:9
+__init__.py	../__init__.py	1;"	kind:file	line:1
+__init__.py	../tests/__init__.py	1;"	kind:file	line:1
+app	../manager.py	/^app = Flask(__name__)$/;"	kind:variable	line:11
+conftest.py	../tests/conftest.py	1;"	kind:file	line:1
+do_request_station_detail	../manager.py	/^def do_request_station_detail(station_id):$/;"	kind:function	line:50
+do_request_station_list	../manager.py	/^def do_request_station_list(uf, page=1):$/;"	kind:function	line:22
+encode	../manager.py	/^def encode(uf):$/;"	kind:function	line:17
+endpoint	../manager.py	/^endpoint = 'http:\/\/anp.gov.br\/postos\/consulta.asp'$/;"	kind:variable	line:13
+endpoint_result	../manager.py	/^endpoint_result = 'http:\/\/anp.gov.br\/postos\/resultado.asp'$/;"	kind:variable	line:14
+extract_station_detail	../manager.py	/^def extract_station_detail(htmlbody):$/;"	kind:function	line:57
+extract_stations_id	../manager.py	/^def extract_stations_id(htmlbody):$/;"	kind:function	line:33
+get_station_details	../manager.py	/^    def get_station_details(station_id):$/;"	kind:function	line:76
+get_stations_details_by_uf	../manager.py	/^def get_stations_details_by_uf(uf):$/;"	kind:function	line:74
+has_next_page	../manager.py	/^def has_next_page(htmlbody):$/;"	kind:function	line:44
+manager.py	../manager.py	1;"	kind:file	line:1
+station_detail	../tests/conftest.py	/^def station_detail():$/;"	kind:function	line:5084
+stations_list	../tests/conftest.py	/^def stations_list():$/;"	kind:function	line:5
+test_do_request_station_detail_integrated	../tests/test_manager.py	/^def test_do_request_station_detail_integrated():$/;"	kind:function	line:26
+test_do_request_station_list	../tests/test_manager.py	/^def test_do_request_station_list():$/;"	kind:function	line:15
+test_do_request_station_list_integrated	../tests/test_manager.py	/^def test_do_request_station_list_integrated():$/;"	kind:function	line:22
+test_doesnt_have_next	../tests/test_manager.py	/^def test_doesnt_have_next():$/;"	kind:function	line:40
+test_excel_export	../tests/test_manager.py	/^def test_excel_export(station_detail):$/;"	kind:function	line:52
+test_extract_station_detail	../tests/test_manager.py	/^def test_extract_station_detail(station_detail):$/;"	kind:function	line:43
+test_extract_stations_id	../tests/test_manager.py	/^def test_extract_stations_id(stations_list):$/;"	kind:function	line:30
+test_extract_stations_id_integrated	../tests/test_manager.py	/^def test_extract_stations_id_integrated():$/;"	kind:function	line:34
+test_get_stations_details_by_uf	../tests/test_manager.py	/^def test_get_stations_details_by_uf():$/;"	kind:function	line:47
+test_has_next	../tests/test_manager.py	/^def test_has_next(stations_list):$/;"	kind:function	line:37
+test_manager.py	../tests/test_manager.py	1;"	kind:file	line:1
+transform_into_excel	../manager.py	/^def transform_into_excel(uf, details):$/;"	kind:function	line:105
