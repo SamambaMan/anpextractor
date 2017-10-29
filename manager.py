@@ -18,15 +18,18 @@ def encode(uf):
     details = get_stations_details_by_uf(uf)
     wb = transform_into_excel(uf, details)
 
-    out = io.StringIO()
+    out = io.BytesIO()
     wb.save(out)
     out.seek(0)
 
-    return send_file(
-        out,
-        mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
-        attachment_filename='{}.xlsx'.format(uf),
-        as_attachment=True)
+    try:
+        return send_file(
+            out,
+            mimetype='application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+            attachment_filename='{}.xlsx'.format(uf),
+            as_attachment=True)
+    except Exception as error:
+        return(error)
 
 def do_request_station_list(uf, page=1):
     'Returns a station list request body'
@@ -75,7 +78,13 @@ def extract_station_detail(htmlbody):
             'bgcolor': re.compile(r'\#(d7d7d7|e7e7e7)')
         })
 
-    nstr = lambda s: s or ""
+    class nonstring():
+        string = ''
+
+    nstr = lambda s: s or ''
+    if len(detail_list) == 11:
+        # Addin the Authorization empty field
+        detail_list = [nonstring()] + detail_list
 
     return [nstr(i.string).replace(u'\xa0', u' ') for i in detail_list]
 
@@ -94,10 +103,10 @@ def get_stations_details_by_uf(uf):
     while True:
         if THREADED:
             details = pooler.map(get_station_details, details_id)
-            returned_details.append(details)
+            returned_details.extend(details)
         else:
             for station_id in details_id:            
-                returned_details.append(get_station_details(station_id))
+                returned_details.extend(get_station_details(station_id))
 
         if not has_next_page(list_page):
             break
@@ -113,7 +122,7 @@ def transform_into_excel(uf, details):
     ws = wb.active
 
     for detail in details:
-        linha = [uf]+ detail
+        linha = [uf] + detail
         ws.append(linha)
 
     return wb
