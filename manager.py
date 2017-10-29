@@ -29,7 +29,7 @@ def encode(uf):
             attachment_filename='{}.xlsx'.format(uf),
             as_attachment=True)
     except Exception as error:
-        return(error)
+        return(str(error))
 
 def do_request_station_list(uf, page=1):
     'Returns a station list request body'

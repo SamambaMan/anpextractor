@@ -9,7 +9,8 @@ from ..manager import (
     extract_station_detail,
     do_request_station_detail,
     get_stations_details_by_uf,
-    transform_into_excel)
+    transform_into_excel,
+    encode)
 
 @httpretty.activate
 def test_do_request_station_list():
@@ -25,7 +26,6 @@ def test_do_request_station_list_integrated():
 @pytest.mark.integration
 def test_do_request_station_detail_integrated():
     assert do_request_station_detail(8362).status_code == 200
-    print(do_request_station_detail(8362).content)
 
 def test_extract_stations_id(stations_list):
     assert len(extract_stations_id(stations_list)) == 200
@@ -59,3 +59,13 @@ def test_excel_export(station_detail, stations_list_without_next):
 
     stations = get_stations_details_by_uf('AC')
     transform_into_excel('AC', stations)
+
+@pytest.mark.integration
+def test_excel_export():
+    stations = get_stations_details_by_uf('AC')
+    transform_into_excel('AC', stations)
+
+
+@pytest.mark.integration
+def test_request():
+    encode('AC')
