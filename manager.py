@@ -1,7 +1,7 @@
 import re
 import io
 from multiprocessing.dummy import Pool
-from flask import Flask, send_file
+from flask import Flask, send_file, Response
 from bs4 import BeautifulSoup
 import requests
 from openpyxl import Workbook
@@ -29,7 +29,9 @@ def encode(uf):
             attachment_filename='{}.xlsx'.format(uf),
             as_attachment=True)
     except Exception as error:
-        return(str(error))
+        print(str(error))
+        return Response(str(error), status=500)
+
 
 def do_request_station_list(uf, page=1):
     'Returns a station list request body'
