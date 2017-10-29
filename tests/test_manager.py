@@ -49,10 +49,10 @@ def test_get_stations_details_by_uf():
 
 @pytest.mark.fulltest
 @httpretty.activate
-def test_excel_export(station_detail, stations_list):
+def test_excel_export(station_detail, stations_list_without_next):
     httpretty.register_uri(httpretty.POST,
                            endpoint,
-                           body=stations_list)
+                           body=stations_list_without_next)
     httpretty.register_uri(httpretty.POST,
                            endpoint_result,
                            body=station_detail)
