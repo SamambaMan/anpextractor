@@ -7,6 +7,7 @@ import requests
 from openpyxl import Workbook
 
 THREADED = True
+POOLCOUNT = 20
 
 app = Flask(__name__)
 
@@ -115,7 +116,7 @@ def get_stations_details_by_uf(uf):
 
     list_page = do_request_station_list(uf, page).content
     details_id = extract_stations_id(list_page)
-    pooler = Pool(4)
+    pooler = Pool(POOLCOUNT)
 
     while True:
         if THREADED:
