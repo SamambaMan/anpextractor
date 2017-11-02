@@ -24,13 +24,13 @@ ENDPOINT = 'http://anp.gov.br/postos/consulta.asp'
 ENDPOIN_RESULT = 'http://anp.gov.br/postos/resultado.asp'
 
 
-def sendmail(filename, attachment=None):
+def sendmail(body, filename=None, attachment=None):
     msg = multipart.MIMEMultipart()
     msg['Subject'] = 'Exportação ANP'
     msg['From'] = EMAIL_USER
     msg['To'] = EMAIL_TO
 
-    msg.attach(text.MIMEText('Anexo', 'plain'))
+    msg.attach(text.MIMEText(body, 'plain'))
 
     if attachment:
         att = application.MIMEApplication(attachment.read(), _subtype="xlsx")
