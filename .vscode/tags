@@ -4,33 +4,48 @@
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 !_TAG_PROGRAM_VERSION	5.9~svn20110310	//
-THREADED	../manager.py	/^THREADED = False$/;"	kind:variable	line:9
+EMAIL_HOST	../manager.py	/^EMAIL_HOST = 'smtp.gmail.com'$/;"	kind:variable	line:15
+EMAIL_PASSWORD	../manager.py	/^EMAIL_PASSWORD = os.environ['EMAIL_PASSWORD']$/;"	kind:variable	line:18
+EMAIL_PORT	../manager.py	/^EMAIL_PORT = '587'$/;"	kind:variable	line:16
+EMAIL_TO	../manager.py	/^EMAIL_TO = 'bruno.fontoura@gmail.com'$/;"	kind:variable	line:19
+EMAIL_USER	../manager.py	/^EMAIL_USER = os.environ['EMAIL_USER']$/;"	kind:variable	line:17
+KEYS	../manager.py	/^KEYS = {}$/;"	kind:variable	line:130
+POOLCOUNT	../manager.py	/^POOLCOUNT = 20$/;"	kind:variable	line:14
+THREADED	../manager.py	/^THREADED = True$/;"	kind:variable	line:13
 __init__.py	../__init__.py	1;"	kind:file	line:1
 __init__.py	../tests/__init__.py	1;"	kind:file	line:1
-app	../manager.py	/^app = Flask(__name__)$/;"	kind:variable	line:11
+app	../manager.py	/^app = Flask(__name__)$/;"	kind:variable	line:21
 conftest.py	../tests/conftest.py	1;"	kind:file	line:1
-do_request_station_detail	../manager.py	/^def do_request_station_detail(station_id):$/;"	kind:function	line:50
-do_request_station_list	../manager.py	/^def do_request_station_list(uf, page=1):$/;"	kind:function	line:22
-encode	../manager.py	/^def encode(uf):$/;"	kind:function	line:17
-endpoint	../manager.py	/^endpoint = 'http:\/\/anp.gov.br\/postos\/consulta.asp'$/;"	kind:variable	line:13
-endpoint_result	../manager.py	/^endpoint_result = 'http:\/\/anp.gov.br\/postos\/resultado.asp'$/;"	kind:variable	line:14
-extract_station_detail	../manager.py	/^def extract_station_detail(htmlbody):$/;"	kind:function	line:57
-extract_stations_id	../manager.py	/^def extract_stations_id(htmlbody):$/;"	kind:function	line:33
-get_station_details	../manager.py	/^    def get_station_details(station_id):$/;"	kind:function	line:76
-get_stations_details_by_uf	../manager.py	/^def get_stations_details_by_uf(uf):$/;"	kind:function	line:74
-has_next_page	../manager.py	/^def has_next_page(htmlbody):$/;"	kind:function	line:44
+detail_list	../manager.py	/^        detail_list = [nonstring()] + detail_list$/;"	kind:variable	line:118
+do_request_station_detail	../manager.py	/^def do_request_station_detail(station_id):$/;"	kind:function	line:93
+do_request_station_list	../manager.py	/^def do_request_station_list(uf, page=1):$/;"	kind:function	line:65
+encode	../manager.py	/^def encode(uf):$/;"	kind:function	line:46
+endpoint	../manager.py	/^endpoint = 'http:\/\/anp.gov.br\/postos\/consulta.asp'$/;"	kind:variable	line:23
+endpoint_result	../manager.py	/^endpoint_result = 'http:\/\/anp.gov.br\/postos\/resultado.asp'$/;"	kind:variable	line:24
+extract_station_detail	../manager.py	/^def extract_station_detail(htmlbody):$/;"	kind:function	line:99
+extract_stations_id	../manager.py	/^def extract_stations_id(htmlbody):$/;"	kind:function	line:76
+get_station_details	../manager.py	/^    def get_station_details(station_id):$/;"	kind:function	line:134
+get_stations_details_by_uf	../manager.py	/^def get_stations_details_by_uf(uf):$/;"	kind:function	line:132
+has_next_page	../manager.py	/^def has_next_page(htmlbody):$/;"	kind:function	line:87
 manager.py	../manager.py	1;"	kind:file	line:1
+nonstring	../manager.py	/^    class nonstring():$/;"	kind:class	line:112
+obtain_value	../manager.py	/^    def obtain_value(key, detail):$/;"	kind:function	line:170
+sendmail	../manager.py	/^def sendmail(filename, attachment):$/;"	kind:function	line:27
 station_detail	../tests/conftest.py	/^def station_detail():$/;"	kind:function	line:5084
 stations_list	../tests/conftest.py	/^def stations_list():$/;"	kind:function	line:5
-test_do_request_station_detail_integrated	../tests/test_manager.py	/^def test_do_request_station_detail_integrated():$/;"	kind:function	line:26
-test_do_request_station_list	../tests/test_manager.py	/^def test_do_request_station_list():$/;"	kind:function	line:15
-test_do_request_station_list_integrated	../tests/test_manager.py	/^def test_do_request_station_list_integrated():$/;"	kind:function	line:22
+stations_list_without_next	../tests/conftest.py	/^def stations_list_without_next():$/;"	kind:function	line:5202
+string	../manager.py	/^        string = ''$/;"	kind:variable	line:113
+test_do_request_station_detail_integrated	../tests/test_manager.py	/^def test_do_request_station_detail_integrated():$/;"	kind:function	line:27
+test_do_request_station_list	../tests/test_manager.py	/^def test_do_request_station_list():$/;"	kind:function	line:16
+test_do_request_station_list_integrated	../tests/test_manager.py	/^def test_do_request_station_list_integrated():$/;"	kind:function	line:23
 test_doesnt_have_next	../tests/test_manager.py	/^def test_doesnt_have_next():$/;"	kind:function	line:40
-test_excel_export	../tests/test_manager.py	/^def test_excel_export(station_detail):$/;"	kind:function	line:52
+test_excel_export	../tests/test_manager.py	/^def test_excel_export():$/;"	kind:function	line:64
+test_excel_export	../tests/test_manager.py	/^def test_excel_export(station_detail, stations_list_without_next):$/;"	kind:function	line:52
 test_extract_station_detail	../tests/test_manager.py	/^def test_extract_station_detail(station_detail):$/;"	kind:function	line:43
 test_extract_stations_id	../tests/test_manager.py	/^def test_extract_stations_id(stations_list):$/;"	kind:function	line:30
 test_extract_stations_id_integrated	../tests/test_manager.py	/^def test_extract_stations_id_integrated():$/;"	kind:function	line:34
 test_get_stations_details_by_uf	../tests/test_manager.py	/^def test_get_stations_details_by_uf():$/;"	kind:function	line:47
 test_has_next	../tests/test_manager.py	/^def test_has_next(stations_list):$/;"	kind:function	line:37
 test_manager.py	../tests/test_manager.py	1;"	kind:file	line:1
-transform_into_excel	../manager.py	/^def transform_into_excel(uf, details):$/;"	kind:function	line:105
+test_request	../tests/test_manager.py	/^def test_request():$/;"	kind:function	line:70
+transform_into_excel	../manager.py	/^def transform_into_excel(uf, details):$/;"	kind:function	line:166

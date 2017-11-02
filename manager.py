@@ -1,5 +1,9 @@
+"""ANP Gas Stations extractor"""
 import re
+import smtplib
 import io
+import os
+from email.mime import multipart, application, text
 from multiprocessing.dummy import Pool
 from flask import Flask, send_file, Response
 from bs4 import BeautifulSoup
@@ -8,19 +12,60 @@ from openpyxl import Workbook
 
 THREADED = True
 POOLCOUNT = 20
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = '587'
+EMAIL_USER = os.environ['EMAIL_USER']
+EMAIL_PASSWORD = os.environ['EMAIL_PASSWORD']
+EMAIL_TO = 'bruno.fontoura@gmail.com'
 
 app = Flask(__name__)
 
-endpoint = 'http://anp.gov.br/postos/consulta.asp'
-endpoint_result = 'http://anp.gov.br/postos/resultado.asp'
+ENDPOINT = 'http://anp.gov.br/postos/consulta.asp'
+ENDPOIN_RESULT = 'http://anp.gov.br/postos/resultado.asp'
+
+
+def sendmail(filename, attachment):
+    msg = multipart.MIMEMultipart()
+    msg['Subject'] = 'Exportação ANP'
+    msg['From'] = EMAIL_USER
+    msg['To'] = EMAIL_TO
+
+    msg.attach(text.MIMEText('Anexo', 'plain'))
+
+    att = application.MIMEApplication(attachment.read(), _subtype="pdf")
+    att.add_header('Content-Disposition', 'attachment', filename=filename)
+    msg.attach(att)
+
+    sender = smtplib.SMTP('{}:{}'.format(EMAIL_HOST, EMAIL_PORT))
+    sender.ehlo()
+    sender.starttls()
+    sender.login(EMAIL_USER, EMAIL_PASSWORD)
+    sender.sendmail(EMAIL_USER, [EMAIL_TO], msg.as_string())
+
+@app.route('/mailtest/')
+def mailtest():
+    'Test email so user may authenticate through gmail'
+    try:
+        out = io.StringIO()
+        out.write("Teste")
+        out.seek(0)
+        sendmail('teste.txt', out)
+        return Response('Mail sent')
+    except Exception as error:
+        return Response(error, status=500)
 
 @app.route('/postos/<uf>')
 def encode(uf):
+    'Extracts all gas stations for a UF, send email with contents'
     details = get_stations_details_by_uf(uf)
     wb = transform_into_excel(uf, details)
 
     out = io.BytesIO()
     wb.save(out)
+    out.seek(0)
+
+    sendmail(uf+'.xlsx', out)
+
     out.seek(0)
 
     try:
@@ -36,7 +81,7 @@ def encode(uf):
 
 def do_request_station_list(uf, page=1):
     'Returns a station list request body'
-    return requests.post(endpoint,
+    return requests.post(ENDPOINT,
                          {'sEstado':uf,
                           'hPesquisar': 'PESQUISAR',
                           'sMunicipio': 0,
@@ -65,7 +110,7 @@ def has_next_page(htmlbody):
 def do_request_station_detail(station_id):
     'Returns a station detail from it`s id'
 
-    return requests.post(endpoint_result,
+    return requests.post(ENDPOIN_RESULT,
                          {'Cod_inst':station_id})
 
 def extract_station_detail(htmlbody):

@@ -4,7 +4,7 @@ from ..manager import (
     do_request_station_list,
     extract_stations_id,
     endpoint_result,
-    endpoint,
+    ENDPOINT,
     has_next_page,
     extract_station_detail,
     do_request_station_detail,
@@ -15,7 +15,7 @@ from ..manager import (
 @httpretty.activate
 def test_do_request_station_list():
     httpretty.register_uri(httpretty.POST,
-                           endpoint)
+                           ENDPOINT)
 
     assert do_request_station_list('ES').status_code == 200
 
@@ -51,7 +51,7 @@ def test_get_stations_details_by_uf():
 @httpretty.activate
 def test_excel_export(station_detail, stations_list_without_next):
     httpretty.register_uri(httpretty.POST,
-                           endpoint,
+                           ENDPOINT,
                            body=stations_list_without_next)
     httpretty.register_uri(httpretty.POST,
                            endpoint_result,
