@@ -24,7 +24,7 @@ ENDPOINT = 'http://anp.gov.br/postos/consulta.asp'
 ENDPOIN_RESULT = 'http://anp.gov.br/postos/resultado.asp'
 
 
-def sendmail(filename, attachment):
+def sendmail(filename, attachment=None):
     msg = multipart.MIMEMultipart()
     msg['Subject'] = 'Exportação ANP'
     msg['From'] = EMAIL_USER
@@ -32,8 +32,9 @@ def sendmail(filename, attachment):
 
     msg.attach(text.MIMEText('Anexo', 'plain'))
 
-    att = application.MIMEApplication(attachment.read(), _subtype="pdf")
-    att.add_header('Content-Disposition', 'attachment', filename=filename)
+    if attachment:
+        att = application.MIMEApplication(attachment.read(), _subtype="xlsx")
+        att.add_header('Content-Disposition', 'attachment', filename=filename)
     msg.attach(att)
 
     sender = smtplib.SMTP('{}:{}'.format(EMAIL_HOST, EMAIL_PORT))
@@ -76,6 +77,7 @@ def encode(uf):
             as_attachment=True)
     except Exception as error:
         print(str(error))
+        sendmail('Não foi possível extrair postos de {}:\n{}'.format(uf, str(error)))
         return Response(str(error), status=500)
 
 
