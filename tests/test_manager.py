@@ -3,7 +3,7 @@ import pytest
 from ..manager import (
     do_request_station_list,
     extract_stations_id,
-    endpoint_result,
+    ENDPOIN_RESULT,
     ENDPOINT,
     has_next_page,
     extract_station_detail,
@@ -54,7 +54,7 @@ def test_excel_export(station_detail, stations_list_without_next):
                            ENDPOINT,
                            body=stations_list_without_next)
     httpretty.register_uri(httpretty.POST,
-                           endpoint_result,
+                           ENDPOIN_RESULT,
                            body=station_detail)
 
     stations = get_stations_details_by_uf('AC')

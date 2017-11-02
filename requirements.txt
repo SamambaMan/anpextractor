@@ -28,6 +28,7 @@ mccabe==0.6.1
 morselate==0.0.1
 openpyxl==2.4.9
 parso==0.1.0
+pep8==1.7.1
 pexpect==4.2.1
 pickleshare==0.7.4
 pkginfo==1.4.1
