@@ -50,7 +50,7 @@ def mailtest():
         out = io.StringIO()
         out.write("Teste")
         out.seek(0)
-        sendmail('teste.txt', out)
+        sendmail('Anexo', 'teste.txt', out)
         return Response('Mail sent')
     except Exception as error:
         return Response(error, status=500)
