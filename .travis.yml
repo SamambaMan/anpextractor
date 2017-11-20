@@ -3,8 +3,12 @@ python:
   - "3.5"
 install:
   pip install -r requirements.txt;
+env:
+  - EMAIL_USER=fakeuser@mail.com
+  - EMAIL_TO=faketo@mail.com
 script:
   pytest -s -m "not integration"
+
 notifications:
   email:
     - felipe.gomes.ferreira@gmail.com

@@ -10,7 +10,9 @@ from ..manager import (
     do_request_station_detail,
     get_stations_details_by_uf,
     transform_into_excel,
-    encode)
+    encode,
+    mailtest
+)
 
 @httpretty.activate
 def test_do_request_station_list():
@@ -65,7 +67,18 @@ def test_excel_export():
     stations = get_stations_details_by_uf('AC')
     transform_into_excel('AC', stations)
 
-
 @pytest.mark.integration
 def test_request():
     encode('AC')
+
+@pytest.mark.maileable
+def test_mailtest(mock, smtpserver):
+    global EMAIL_HOST, EMAIL_PORT
+    import ipdb; ipdb.set_trace()
+    mock.patch('manager.EMAIL_HOST', smtpserver.addr[0])
+    mock.patch('manager.EMAIL_PORT', smtpserver.addr[1])
+    manager.EMAIL_HOST = smtpserver.addr[0]
+    manager.EMAIL_PORT = smtpserver.addr[1]
+
+    mailtest()
+    assert len(smtpserver.outbox) == 1

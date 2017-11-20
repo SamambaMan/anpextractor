@@ -35,7 +35,7 @@ def sendmail(body, filename=None, attachment=None):
     if attachment:
         att = application.MIMEApplication(attachment.read(), _subtype="xlsx")
         att.add_header('Content-Disposition', 'attachment', filename=filename)
-    msg.attach(att)
+        msg.attach(att)
 
     sender = smtplib.SMTP('{}:{}'.format(EMAIL_HOST, EMAIL_PORT))
     sender.ehlo()
