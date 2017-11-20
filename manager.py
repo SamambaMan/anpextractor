@@ -65,7 +65,7 @@ def encode(uf):
     wb.save(out)
     out.seek(0)
 
-    sendmail(uf+'.xlsx', out)
+    sendmail("Anexo", uf+'.xlsx', out)
 
     out.seek(0)
 
